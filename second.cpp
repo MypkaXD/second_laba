@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <windows.h>
 
@@ -87,16 +87,7 @@ inputRN:
 			newarray[countold] = array[countold];
 		}
 		delete[] array;//удаляю старый массив
-		array = NULL;
-
-		std::string* array = new std::string[N];//создаю новый массив, где будут хранится данные из временного массива с именем ARRAY
-
-		for (int countnew = 0; countnew < N - 1; ++countnew)// заполняю массив временными элементами кроме последнего индекса, он имеет произволные данные
-		{
-			newarray[countnew] = array[countnew];
-		}
-		delete[] newarray;//удаляю временный массив
-		newarray = NULL;
+		array = newarray;
 
 		getStringOfEnd(array, N);//заполняю последний индекс нужными МНЕ данными
 
@@ -113,10 +104,13 @@ inputRN:
 		goto inputRN;
 	}
 
-
-
 exitFromCpp:
-	std::cout << "Конец программы" << std::endl;
+	std::cout << "Итоговый массив: ";
+	for (int count = 0; count < N; ++count)
+	{
+		std::cout << array[count] << " ";
+	}
+	std::cout << "\n" << "Конец программы" << std::endl;
 	delete[] array;
 	array = nullptr;
 	return 0;
